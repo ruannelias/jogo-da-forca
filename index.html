@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forca</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Jogo da Forca</h1>
+        <button onclick="chooseTheme('animais')" id="animaisBtn">Animais</button>
+        <button onclick="chooseTheme('cores')" id="coresBtn">Cores</button>
+        <button onclick="chooseTheme('frutas')" id="frutasBtn">Frutas</button>
+        <button onclick="chooseTheme('países')" id="paisesBtn">Países</button>
+        <div id="word"></div>
+        <p>Tentativas restantes: <span id="attempts">10</span></p>
+        <label for="letter">Digite uma letra:</label>
+        <input type="text" id="letter" maxlength="1">
+        <button onclick="checkLetter()">Verificar</button>
+        <p id="message"></p>
+        <button onclick="resetGame()">Resetar Jogo</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

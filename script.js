@@ -11,17 +11,6 @@ let guessedLetters = [];
 let attempts = 10;
 
 function chooseTheme(theme) {
-    selectedTheme = theme;
-    selectedWord = themes[selectedTheme][Math.floor(Math.random() * themes[selectedTheme].length)];
-    guessedLetters = [];
-    attempts = 10;
-    document.getElementById("attempts").textContent = attempts;
-    document.getElementById("message").textContent = "";
-    document.getElementById("letter").disabled = false;
-    displayWord();
-}
-
-function chooseTheme(theme) {
     const themeButtons = document.querySelectorAll("button[id$='Btn']");
     themeButtons.forEach(button => button.classList.remove("selected"));
 
@@ -36,7 +25,6 @@ function chooseTheme(theme) {
     document.getElementById(`${theme}Btn`).classList.add("selected");
 }
 
-
 function resetGame() {
     if (selectedTheme) {
         selectedWord = themes[selectedTheme][Math.floor(Math.random() * themes[selectedTheme].length)];
@@ -49,6 +37,9 @@ function resetGame() {
     } else {
         document.getElementById("message").textContent = "Escolha um tema antes de jogar.";
     }
+    const guessInput = document.getElementById("guess");
+    guessInput.value = '';
+    guessInput.disabled = false;
 }
 
 function displayWord() {
@@ -57,6 +48,20 @@ function displayWord() {
         .split("")
         .map(letter => (guessedLetters.includes(letter) ? letter : "_"))
         .join(" ");
+}
+
+function checkGuess() {
+    const guessInput = document.getElementById("guess");
+    const guess = guessInput.value.toLowerCase();
+
+    if (guess === selectedWord) {
+        document.getElementById("word").textContent = selectedWord; // Preenche as lacunas com a palavra correta
+        document.getElementById("message").textContent = `Parabéns, você acertou! A palavra era "${selectedWord}".`;
+        document.getElementById("letter").disabled = true;
+        guessInput.disabled = true;
+    } else {
+        document.getElementById("message").textContent = `Palpite incorreto. Tente novamente!`;
+    }
 }
 
 function checkLetter() {
